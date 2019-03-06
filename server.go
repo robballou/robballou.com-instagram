@@ -10,17 +10,18 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Image a cool instagram image
 type Image struct {
-	Url   string `json:"url"`
+	URL   string `json:"url"`
 	Image string `json:"image"`
 }
 
-// GetImages get 10 random images
+// GetImages get 20 random images
 func GetImages(writer http.ResponseWriter, request *http.Request) {
 	redisClient := newClient()
 
 	var images []Image
-	count := 10
+	count := 20
 	for i := 0; i < count; i++ {
 		key, err := redisClient.RandomKey().Result()
 		if err != nil {
@@ -31,7 +32,7 @@ func GetImages(writer http.ResponseWriter, request *http.Request) {
 		if err != nil {
 			panic(err)
 		}
-		images = append(images, Image{Url: key, Image: value})
+		images = append(images, Image{URL: key, Image: value})
 	}
 
 	// json.NewEncoder(writer).Encode(images)

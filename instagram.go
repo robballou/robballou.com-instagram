@@ -1,3 +1,7 @@
+//
+// Feed images from RSS feed into REDIS for output
+//
+
 package main
 
 import (

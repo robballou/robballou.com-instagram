@@ -4,6 +4,12 @@ services:
     build: .
     links:
       - redis
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - 8000:8000
   redis:
     image: redis
     volumes:

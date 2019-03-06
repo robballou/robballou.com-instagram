@@ -1,0 +1,8 @@
+FROM golang:1.9
+
+ADD server.go /go/src/github.com/robballou/robballou-images/
+RUN go get github.com/go-redis/redis && \
+  go get github.com/gorilla/mux
+RUN go install github.com/robballou/robballou-images
+ENTRYPOINT "/go/bin/robballou-images"
+EXPOSE 8000
